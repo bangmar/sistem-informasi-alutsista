@@ -26,7 +26,7 @@ const Button: FC<TButtonProps> = ({
 				type === "primary"
 					? "bg-green-800 hover:bg-green-700 ease-in-out duration-300"
 					: ""
-			} px-4 py-1 rounded-sm shadow-sm`}>
+			} px-4 py-1.5 rounded-sm shadow-sm`}>
 			{hasLink ? <Link href={link as string}>{text}</Link> : <h1>text</h1>}
 		</button>
 	);
