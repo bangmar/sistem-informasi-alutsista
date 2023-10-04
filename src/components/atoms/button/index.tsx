@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 
 type TButtonProps = {
 	name: string;
@@ -9,6 +9,8 @@ type TButtonProps = {
 	hasLink?: boolean;
 	link?: string;
 	type: "primary" | "secondary";
+	hasIcon?: boolean;
+	icon?: ReactNode;
 };
 
 const Button: FC<TButtonProps> = ({
@@ -18,6 +20,8 @@ const Button: FC<TButtonProps> = ({
 	hasLink = false,
 	link = "/",
 	type = "primary",
+	hasIcon,
+	icon,
 }) => {
 	return (
 		<button
@@ -27,7 +31,10 @@ const Button: FC<TButtonProps> = ({
 					? "bg-green-800 hover:bg-green-700 ease-in-out duration-300"
 					: ""
 			} px-4 py-1.5 rounded-sm shadow-sm`}>
-			{hasLink ? <Link href={link as string}>{text}</Link> : <h1>text</h1>}
+			<section className='flex items-center gap-2'>
+				{hasLink ? <Link href={link as string}>{text}</Link> : <h1>text</h1>}
+				{hasIcon ? icon : null}
+			</section>
 		</button>
 	);
 };
