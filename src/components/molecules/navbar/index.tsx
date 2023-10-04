@@ -25,18 +25,18 @@ const Navbar = () => {
 			<nav
 				className={`${
 					isMenuToggled ? "-top-52" : "top-16"
-				} text-neutral-200 py-4 md:py-0 px-10 md:px-0  gap-4 md:gap-6 items-center text-sm flex flex-col md:flex-row bg-neutral-800 md:bg-transparent absolute  left-0 right-0 md:static transition-all duration-200 ease-in-out -z-10`}>
-				<Link href={"/"} className='hover:font-bold ease-in-out duration-300'>
-					Tentang
+				} text-neutral-100 py-4 md:py-0 px-10 md:px-0  gap-4 md:gap-8 items-center text-sm flex flex-col md:flex-row bg-neutral-800 md:bg-transparent absolute  left-0 right-0 md:static transition-all duration-200 ease-in-out -z-10`}>
+				<Link href={"/"} className='hover:font-bold ease-in-out duration-300 '>
+					Home
 				</Link>
 				<Link
 					href={"/panduan"}
-					className='hover:font-bold ease-in-out duration-300'>
+					className='hover:font-bold ease-in-out duration-300 '>
 					Panduan
 				</Link>
 				<Link
 					href={"/daftar"}
-					className='hover:font-bold ease-in-out duration-300'>
+					className='hover:font-bold ease-in-out duration-300 '>
 					Daftar
 				</Link>
 				<Button
