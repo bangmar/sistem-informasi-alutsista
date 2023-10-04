@@ -38,16 +38,24 @@ const Footer = () => {
 					</section>
 					<section>
 						<h1 className='font-bold text-base mb-2'>Peta Situs</h1>
-						<Link href={"/"} className='block mb-1'>
-							Tentang
+						<Link
+							href={"/"}
+							className='block mb-1 hover:underline transition-all duration-200 ease-in-out hover:font-bold'>
+							Home
 						</Link>
-						<Link href={"/panduan"} className='block mb-1'>
+						<Link
+							href={"/panduan"}
+							className='block mb-1 hover:underline transition-all duration-200 ease-in-out hover:font-bold'>
 							Panduan
 						</Link>
-						<Link href={"/daftar"} className='block mb-1'>
+						<Link
+							href={"/daftar"}
+							className='block mb-1 hover:underline transition-all duration-200 ease-in-out hover:font-bold'>
 							Daftar
 						</Link>
-						<Link href={"/masuk"} className='block mb-1'>
+						<Link
+							href={"/masuk"}
+							className='block mb-1 hover:underline transition-all duration-200 ease-in-out hover:font-bold'>
 							Masuk
 						</Link>
 					</section>
@@ -75,7 +83,7 @@ const Footer = () => {
 						</span>
 					</section>
 				</aside>
-				<aside className='flex items-end'>
+				<aside className='flex items-end justify-start md:justify-end'>
 					<p className='text-xs text-neutral-400 '>
 						2023 All Right Reserverd PT Lautsista by Telkom University
 						Purwokerto
