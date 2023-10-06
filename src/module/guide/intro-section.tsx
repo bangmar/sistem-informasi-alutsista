@@ -6,8 +6,8 @@ const IntroSection = () => {
 		<section className='grid grid-cols-1 lg:grid-cols-2 mb-28'>
 			<aside className='mb-10'>
 				<h2 className='text-xl mb-1'>Panduan</h2>
-				<h1 className='font-bold text-4xl mb-4  w-96'>
-					Panduan Penggunaan Sitem dan Pengguna
+				<h1 className='font-bold text-4xl mb-4 w-full  md:w-96'>
+					Panduan Penggunaan Sistem dan Pengguna
 				</h1>
 				<p className='text-sm'>
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat

@@ -28,10 +28,14 @@ const FAQSection = () => {
 			</header>
 			{dummyFAQ.map((item, index) => {
 				return (
-					<Disclosure key={index} as={"div"} className={"mb-3"}>
+					<Disclosure
+						key={index}
+						as={"div"}
+						className={"mb-3"}
+						defaultOpen={index === 0}>
 						{({ open }) => (
 							<>
-								<Disclosure.Button className='py-2 w-full text-start flex items-center justify-between px-4 rounded-sm shadow-sm text-neutral-200 bg-green-700'>
+								<Disclosure.Button className='py-2 gap-1 flex-wrap w-full text-start flex items-center justify-between px-4 rounded-sm shadow-sm text-neutral-200 bg-green-700'>
 									<h1 className='text-sm'>{item.questions}</h1>
 									<BiSolidDownArrow
 										className={`${
@@ -39,7 +43,7 @@ const FAQSection = () => {
 										} transition-all duration-200 ease-in-out`}
 									/>
 								</Disclosure.Button>
-								<Disclosure.Panel className='text-neutral-700 px-6 py-4 text-sm bg-neutral-200'>
+								<Disclosure.Panel className='text-neutral-700 px-6 py-4 text-sm bg-neutral-100'>
 									{item.asnwer}
 								</Disclosure.Panel>
 							</>
