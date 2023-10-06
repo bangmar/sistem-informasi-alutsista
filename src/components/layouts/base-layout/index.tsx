@@ -16,7 +16,9 @@ const Baselayout: FC<TBaseLayoutProps> = ({ children }) => {
 		<div className=' container mx-auto relative max-w-[1900px]'>
 			<Navbar />
 			<section className={`${isSticky ? "block h-20" : ""}`}></section>
-			<main className='px-12 md:px-20 lg:px-28  '>{children}</main>
+			<main className='px-12 md:px-20 lg:px-28 min-h-[800px]  '>
+				{children}
+			</main>
 			<Footer />
 		</div>
 	);

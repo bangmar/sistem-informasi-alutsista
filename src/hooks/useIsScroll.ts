@@ -5,7 +5,7 @@ export const useIsScroll = () => {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			if (window.scrollY > 600) {
+			if (window.scrollY > 550) {
 				setIsSticky(true);
 			} else {
 				setIsSticky(false);

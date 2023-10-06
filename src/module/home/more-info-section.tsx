@@ -4,6 +4,7 @@ import { FaGun, FaPlane, FaShip } from "react-icons/fa6";
 import { BsArrowRight } from "react-icons/bs";
 import { GiTank } from "react-icons/gi";
 import Button from "@/components/atoms/button";
+import Card from "@/components/molecules/card";
 
 const MoreInfoSection = () => {
 	return (
@@ -16,78 +17,31 @@ const MoreInfoSection = () => {
 			</header>
 			<main className=' grid place-items-center '>
 				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6  items-center justify-center'>
-					<section className='bg-neutral-100 rounded-sm shadow-sm w-52 px-10 h-56 md:h-64 flex gap-4 flex-col justify-between py-10 items-start'>
-						<FaGun className='text-green-700 w-12 h-12' />
-						<h1 className='text-neutral-600 text-xl font-bold'>
-							Informasi Senjata Api
-						</h1>
-						<Button
-							name='informasi-senjata-api'
-							text='Lihat Lebih'
-							hasLink={true}
-							link=''
-							type='secondary'
-							classname='text-green-700 font-bold !p-0 group hover:text-green-600'
-							hasIcon
-							icon={
-								<BsArrowRight className='group-hover:ml-2 ease-in-out duration-150 transition-all' />
-							}
-						/>
-					</section>
-					<section className='bg-neutral-100 rounded-sm shadow-sm w-52 px-10 h-56 md:h-64 flex gap-4 flex-col justify-between py-10 items-start'>
-						<FaPlane className='text-green-700 w-12 h-12' />
-						<h1 className='text-neutral-600 text-xl font-bold'>
-							Informasi Pesawat
-						</h1>
-						<Button
-							name='informasi-pesawat'
-							text='Lihat Lebih'
-							hasLink={true}
-							link=''
-							type='secondary'
-							classname='text-green-700 font-bold !p-0 group hover:text-green-600'
-							hasIcon
-							icon={
-								<BsArrowRight className='group-hover:ml-2 ease-in-out duration-150 transition-all' />
-							}
-						/>
-					</section>
-					<section className='bg-neutral-100 rounded-sm shadow-sm w-52 px-10 h-56 md:h-64 flex gap-4 flex-col justify-between py-10 items-start'>
-						<FaShip className='text-green-700 w-12 h-12' />
-						<h1 className='text-neutral-600 text-xl font-bold'>
-							Informasi Kapal Laut
-						</h1>
-						<Button
-							name='informasi-kapal-laut'
-							text='Lihat Lebih'
-							hasLink={true}
-							link=''
-							type='secondary'
-							classname='text-green-700 font-bold !p-0 group hover:text-green-600'
-							hasIcon
-							icon={
-								<BsArrowRight className='group-hover:ml-2 ease-in-out duration-150 transition-all' />
-							}
-						/>
-					</section>
-					<section className='bg-neutral-100 rounded-sm shadow-sm w-52 px-10 h-56 md:h-64 flex gap-4 flex-col justify-between py-10 items-start'>
-						<GiTank className='text-green-700 w-12 h-12' />
-						<h1 className='text-neutral-600 text-xl font-bold'>
-							Informasi Tank Tempur
-						</h1>
-						<Button
-							name='informasi-tank'
-							text='Lihat Lebih'
-							hasLink={true}
-							link=''
-							type='secondary'
-							classname='text-green-700 font-bold !p-0 group hover:text-green-600'
-							hasIcon
-							icon={
-								<BsArrowRight className='group-hover:ml-2 ease-in-out duration-150 transition-all' />
-							}
-						/>
-					</section>
+					<Card
+						buttonText='Lihat Lebih'
+						isHasButton
+						title='Informasi Senjata Api'
+						icon={<FaGun className='text-green-700 w-12 h-12' />}
+					/>
+
+					<Card
+						buttonText='Lihat Lebih'
+						isHasButton
+						title='Informasi Pesawat'
+						icon={<FaPlane className='text-green-700 w-12 h-12' />}
+					/>
+					<Card
+						buttonText='Lihat Lebih'
+						isHasButton
+						title='Informasi Kapal Laut'
+						icon={<FaShip className='text-green-700 w-12 h-12' />}
+					/>
+					<Card
+						buttonText='Lihat Lebih'
+						isHasButton
+						title='Informasi Tank Tempur Laut'
+						icon={<GiTank className='text-green-700 w-12 h-12' />}
+					/>
 				</div>
 			</main>
 		</section>
