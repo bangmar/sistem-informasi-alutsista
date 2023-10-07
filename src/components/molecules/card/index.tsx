@@ -27,7 +27,7 @@ const Card: FC<TCardProps> = ({
 					text={buttonText}
 					hasLink={true}
 					link={link}
-					type='secondary'
+					cat='secondary'
 					classname='text-green-700 font-bold !p-0 group hover:text-green-600'
 					hasIcon
 					icon={

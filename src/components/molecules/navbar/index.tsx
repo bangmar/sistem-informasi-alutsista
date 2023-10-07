@@ -56,16 +56,16 @@ const Navbar = () => {
 					Panduan
 				</Link>
 				<Link
-					href={"/daftar"}
+					href={"/auth/daftar"}
 					className='hover:font-bold ease-in-out duration-300 '>
 					Daftar
 				</Link>
 				<Button
-					type='primary'
+					cat='primary'
 					name='masuk'
 					hasLink={true}
 					text='Masuk'
-					link='/masuk'
+					link='/auth/masuk'
 					classname='w-full grid place-items-center'
 				/>
 			</nav>
