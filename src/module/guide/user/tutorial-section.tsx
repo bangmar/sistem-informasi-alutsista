@@ -26,7 +26,7 @@ const TutorialSection = () => {
 									<h1>
 										Klik opsi Daftar pada Navigasi diatas, atau bisa klik{" "}
 										<Link
-											href={"/daftar"}
+											href={"/auth/daftar"}
 											className='font-bold underline text-green-700'>
 											dinisi
 										</Link>
@@ -73,7 +73,7 @@ const TutorialSection = () => {
 									<h1>
 										Klik opsi masuk pada Navigasi diatas, atau bisa klik{" "}
 										<Link
-											href={"/masuk"}
+											href={"/auth/masuk"}
 											className='font-bold underline text-green-700'>
 											dinisi
 										</Link>

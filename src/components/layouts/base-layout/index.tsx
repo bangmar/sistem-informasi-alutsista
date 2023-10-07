@@ -13,7 +13,7 @@ const Baselayout: FC<TBaseLayoutProps> = ({ children }) => {
 	const { isSticky } = useIsScroll();
 
 	return (
-		<div className=' container mx-auto relative max-w-[1900px]'>
+		<div className=' container mx-auto relative max-w-[2000px]'>
 			<Navbar />
 			<section className={`${isSticky ? "block h-20" : ""}`}></section>
 			<main className='px-12 md:px-20 lg:px-28 min-h-[800px]  '>
