@@ -57,7 +57,7 @@ const Footer = () => {
 					</section>
 					<section>
 						<h1 className='font-bold text-base mb-2'>Alamat Kantor</h1>
-						<p>941 Ohio Ave.Winona, MN 55987</p>
+						<p>941 Ohio Ave.Winona, MN 55987 Indo</p>
 					</section>
 				</aside>
 			</section>
