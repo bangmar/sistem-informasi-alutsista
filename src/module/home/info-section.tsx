@@ -3,9 +3,12 @@ import about from "@/assets/home/about.svg";
 
 const InfoSection = () => {
 	return (
-		<aside className='text-neutral-900 mb-20'>
-			<h2 className='text-3xl font-bold mb-10'>
-				Penyedia Informasi Alutsista Kementrian Pertahanan RI
+		<aside className='text-neutral-900 mb-20 mt-10'>
+			<h2 className='text-3xl lg:text-4xl font-bold mb-1'>
+				Penyedia Informasi Alutsista
+			</h2>
+			<h2 className='text-3xl lg:text-4xl font-bold mb-10'>
+				Kementrian Pertahanan RI
 			</h2>
 			<article className='grid grid-cols-1 md:grid-cols-2 gap-16'>
 				<section className='flex flex-col gap-10'>

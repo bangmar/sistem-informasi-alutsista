@@ -48,11 +48,7 @@ const Footer = () => {
 							className='block mb-1 hover:underline transition-all duration-200 ease-in-out hover:font-bold'>
 							Panduan
 						</Link>
-						<Link
-							href={"/daftar"}
-							className='block mb-1 hover:underline transition-all duration-200 ease-in-out hover:font-bold'>
-							Daftar
-						</Link>
+
 						<Link
 							href={"/masuk"}
 							className='block mb-1 hover:underline transition-all duration-200 ease-in-out hover:font-bold'>

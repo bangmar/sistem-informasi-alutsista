@@ -1,8 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
 
-const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"] });
+const playfairDisplay = Playfair_Display({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	title: "Sistem Informasi Alutsista",
@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<body className={plusJakartaSans.className}>{children}</body>
+			<body className={playfairDisplay.className}>{children}</body>
 		</html>
 	);
 }
