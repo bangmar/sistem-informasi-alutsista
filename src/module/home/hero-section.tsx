@@ -16,22 +16,14 @@ const HeroSection = () => {
 					priority
 				/>
 			</section>
-			<section className='relative z-20 h-[500px] align-bottom content-end pb-32 grid  grid-cols-1 lg:grid-cols-2'>
-				<aside className='flex flex-col gap-8'>
-					<h1 className=' text-4xl md:text-5xl font-bold '>
-						INFORMASI PERLENGKAPAN ALUTSISTA - REPUBLIK INDONESIA{" "}
+			<section className='relative z-20 h-[500px] align-bottom content-end pb-48 grid  grid-cols-1 '>
+				<aside className='flex flex-col gap-2'>
+					<h1 className=' text-4xl md:text-4xl lg:text-5xl  font-bold '>
+						INFORMASI PERLENGKAPAN
 					</h1>
-					<section className='w-full flex gap-4'>
-						<input
-							type='search'
-							className='w-full placeholder:text-neutral-400  outline-none text-neutral-900 text-sm rounded-sm shadow-sm md:text-base px-6 h-10 md:h-11 '
-							placeholder='Cari Informasi alutsista apa saja disini'
-							autoFocus
-						/>
-						<section className='h-10 md:h-11 text-2xl bg-green-800 hover:bg-green-700 cursor-pointer ease-in-out duration-200 grid place-items-center px-3 rounded-sm shadow-sm'>
-							<AiOutlineSearch />
-						</section>
-					</section>
+					<h1 className=' text-4xl md:text-4xl lg:text-5xl  font-bold '>
+						ALUTSISTA - REPUBLIK INDONESIA{" "}
+					</h1>
 				</aside>
 			</section>
 		</>

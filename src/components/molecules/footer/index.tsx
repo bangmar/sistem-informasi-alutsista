@@ -48,11 +48,7 @@ const Footer = () => {
 							className='block mb-1 hover:underline transition-all duration-200 ease-in-out hover:font-bold'>
 							Panduan
 						</Link>
-						<Link
-							href={"/daftar"}
-							className='block mb-1 hover:underline transition-all duration-200 ease-in-out hover:font-bold'>
-							Daftar
-						</Link>
+
 						<Link
 							href={"/masuk"}
 							className='block mb-1 hover:underline transition-all duration-200 ease-in-out hover:font-bold'>
@@ -61,7 +57,7 @@ const Footer = () => {
 					</section>
 					<section>
 						<h1 className='font-bold text-base mb-2'>Alamat Kantor</h1>
-						<p>941 Ohio Ave.Winona, MN 55987</p>
+						<p>941 Ohio Ave.Winona, MN 55987 Indo</p>
 					</section>
 				</aside>
 			</section>

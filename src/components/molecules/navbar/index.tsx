@@ -55,11 +55,7 @@ const Navbar = () => {
 					} hover:font-bold ease-in-out  duration-300`}>
 					Panduan
 				</Link>
-				<Link
-					href={"/auth/daftar"}
-					className='hover:font-bold ease-in-out duration-300 '>
-					Daftar
-				</Link>
+
 				<Button
 					cat='primary'
 					name='masuk'
