@@ -21,7 +21,14 @@ export const register = async (request: RegisterSchemaType) => {
 
 	const isUserExsisted = await prisma.user.findFirst({
 		where: {
-			nip: result.nip,
+			OR: [
+				{
+					nip: result.nip,
+				},
+				{
+					email: result.email,
+				},
+			],
 		},
 	});
 
@@ -49,14 +56,14 @@ export const register = async (request: RegisterSchemaType) => {
 	}
 
 	result.password = await hash(result.password, 10);
-	const profile = "";
 
 	return await prisma.user.create({
-		data: { ...result, profile, roleId: userRoleId?.id as string },
+		data: { ...result, roleId: userRoleId?.id as string },
 		select: {
 			fullname: true,
 			nip: true,
 			createdAt: true,
+			id: true,
 			role: {
 				select: {
 					id: true,
@@ -86,7 +93,7 @@ export const login = async (request: LoginSchemaType) => {
 	});
 
 	if (!isUserExsisted) {
-		throw new ResponseError(404, "Wrong username or password");
+		throw new ResponseError(404, "Wrong nip or password");
 	}
 
 	const comparePassword = await compare(
@@ -213,6 +220,36 @@ export const remove = async (request: GetSchemaType) => {
 			fullname: true,
 			id: true,
 			nip: true,
+		},
+	});
+};
+
+export const getAll = async () => {
+	const userRoleId = await prisma.role.findFirst({
+		where: {
+			name: "USER",
+		},
+		select: {
+			id: true,
+		},
+	});
+
+	return await prisma.user.findMany({
+		select: {
+			id: true,
+			createdAt: true,
+			email: true,
+			fullname: true,
+			nip: true,
+			role: {
+				select: {
+					id: true,
+					name: true,
+				},
+			},
+		},
+		where: {
+			roleId: userRoleId?.id,
 		},
 	});
 };

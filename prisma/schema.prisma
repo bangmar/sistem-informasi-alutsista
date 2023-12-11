@@ -16,7 +16,7 @@ model User {
   fullname String @db.VarChar(255)
   nip String @db.VarChar(50) @unique
   password String 
-  profile String @db.VarChar(255)
+  email String @db.VarChar(255) @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   roleId String 

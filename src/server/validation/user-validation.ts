@@ -9,6 +9,7 @@ export const registerSchema = z.object({
 		.string()
 		.min(1, { message: "Please Enter Valid NIP" })
 		.max(50, { message: "Please Enter Valid NIP" }),
+	email: z.string().email({ message: "please enter a valid email address" }),
 	password: z.string().min(8, { message: "Password must more then 8 char" }),
 });
 
