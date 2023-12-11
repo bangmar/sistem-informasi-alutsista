@@ -1,10 +1,9 @@
-import { ResponseError } from "@/server/error/response-error";
 import { adminMiddleware } from "@/server/middleware/admin-middleware";
 import { errorMiddleware } from "@/server/middleware/error-middleware";
 import { IUserRequest } from "@/server/middleware/types";
 import { getById, remove, update } from "@/server/service/user-service";
 
-export const getHandler = async (request: Request) => {
+const getHandler = async (request: Request) => {
 	const { searchParams } = new URL(request.url);
 	const id = searchParams.get("id");
 
@@ -18,7 +17,7 @@ export const getHandler = async (request: Request) => {
 	);
 };
 
-export const updateHandler = async (request: IUserRequest) => {
+const updateHandler = async (request: IUserRequest) => {
 	const { searchParams } = new URL(request.url);
 	const id = searchParams.get("id");
 	const data = await update({ ...(await request.json()), id: id });
@@ -31,7 +30,7 @@ export const updateHandler = async (request: IUserRequest) => {
 	);
 };
 
-export const removeHandler = async (request: Request) => {
+const removeHandler = async (request: Request) => {
 	const { searchParams } = new URL(request.url);
 	const id = searchParams.get("id");
 	console.log(id);

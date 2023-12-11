@@ -3,7 +3,7 @@ import { errorMiddleware } from "@/server/middleware/error-middleware";
 import { IUserRequest } from "@/server/middleware/types";
 import { register } from "@/server/service/user-service";
 
-export async function postHandler(request: IUserRequest) {
+async function postHandler(request: IUserRequest) {
 	const json = await request.json();
 	const data = await register(json);
 
