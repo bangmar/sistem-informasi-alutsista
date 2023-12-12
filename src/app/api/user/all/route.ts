@@ -1,4 +1,4 @@
-import { authMiddleware } from "@/server/middleware/auth-middleware";
+import { adminMiddleware } from "@/server/middleware/admin-middleware";
 import { errorMiddleware } from "@/server/middleware/error-middleware";
 import { getAll } from "@/server/service/user-service";
 
@@ -13,4 +13,4 @@ const getHanlder = async () => {
 	);
 };
 
-export const GET = authMiddleware(errorMiddleware(getHanlder));
+export const GET = adminMiddleware(errorMiddleware(getHanlder));
