@@ -1,12 +1,13 @@
+import { NextRequest } from "next/server";
 import { ResponseError } from "../error/response-error";
-import { IUserRequest } from "./types";
+import { IUserRequest, TParams } from "./types";
 
 export const errorMiddleware = (
-	handler: (request: IUserRequest) => Promise<Response>
+	handler: (request: IUserRequest, params?: TParams) => Promise<Response>
 ) => {
-	return async (request: IUserRequest) => {
+	return async (request: IUserRequest, params?: TParams) => {
 		try {
-			return await handler(request);
+			return await handler(request, params);
 		} catch (error) {
 			if (error instanceof ResponseError) {
 				return new Response(

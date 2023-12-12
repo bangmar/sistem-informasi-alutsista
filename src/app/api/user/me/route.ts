@@ -1,4 +1,5 @@
 import { authMiddleware } from "@/server/middleware/auth-middleware";
+import { errorMiddleware } from "@/server/middleware/error-middleware";
 import { IUserRequest } from "@/server/middleware/types";
 import { getMe } from "@/server/service/user-service";
 
@@ -14,4 +15,4 @@ const getMeHandler = async (request: IUserRequest) => {
 	);
 };
 
-export const GET = authMiddleware(getMeHandler);
+export const GET = authMiddleware(errorMiddleware(getMeHandler));
