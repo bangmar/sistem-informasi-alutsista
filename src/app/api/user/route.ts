@@ -13,7 +13,12 @@ const getHandler = async (request: Request) => {
 		JSON.stringify({
 			message: "Success get user",
 			data,
-		})
+		}),
+		{
+			headers: {
+				"Content-Type": "application/json",
+			},
+		}
 	);
 };
 
@@ -26,7 +31,12 @@ const updateHandler = async (request: IUserRequest) => {
 		JSON.stringify({
 			message: "Success update user",
 			data,
-		})
+		}),
+		{
+			headers: {
+				"Content-Type": "application/json",
+			},
+		}
 	);
 };
 
@@ -40,7 +50,12 @@ const removeHandler = async (request: Request) => {
 		JSON.stringify({
 			message: "Success delete user",
 			data,
-		})
+		}),
+		{
+			headers: {
+				"Content-Type": "application/json",
+			},
+		}
 	);
 };
 

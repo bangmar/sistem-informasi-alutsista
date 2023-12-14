@@ -1,12 +1,12 @@
 import jwt from "jsonwebtoken";
-import { IUserRequest } from "./types";
+import { IUserRequest, TParams } from "./types";
 
 const secretKey: string = "TESTSECRETDULU";
 
 export const authMiddleware = (
-	handler: (request: IUserRequest) => Promise<Response>
+	handler: (request: IUserRequest, params?: TParams) => Promise<Response>
 ) => {
-	return async (request: IUserRequest) => {
+	return async (request: IUserRequest, params?: TParams) => {
 		const token = request.headers.get("authorization")?.replace("Bearer ", "");
 		if (!token) {
 			return new Response(
@@ -19,7 +19,7 @@ export const authMiddleware = (
 		try {
 			const decoded = jwt.verify(token, secretKey);
 			request.user = decoded;
-			return handler(request);
+			return handler(request, params);
 		} catch (error) {
 			return new Response(
 				JSON.stringify({ message: "Unauthorized: Invalid token." })

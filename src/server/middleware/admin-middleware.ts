@@ -1,11 +1,11 @@
 import prisma from "../../../prisma/client";
 import { authMiddleware } from "./auth-middleware";
-import { IUserRequest } from "./types";
+import { IUserRequest, TParams } from "./types";
 
 export const adminMiddleware = (
-	handler: (request: IUserRequest) => Promise<Response>
+	handler: (request: IUserRequest, params?: TParams) => Promise<Response>
 ) => {
-	return authMiddleware(async (request: IUserRequest) => {
+	return authMiddleware(async (request: IUserRequest, params?: TParams) => {
 		const { user } = request.user;
 
 		const isRoleAdmin = await prisma.role.findUnique({
@@ -25,6 +25,6 @@ export const adminMiddleware = (
 				{ status: 401 }
 			);
 		}
-		return handler(request);
+		return handler(request, params);
 	});
 };

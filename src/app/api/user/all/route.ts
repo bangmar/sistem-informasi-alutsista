@@ -9,7 +9,12 @@ const getHanlder = async () => {
 		JSON.stringify({
 			message: "success get all users",
 			data,
-		})
+		}),
+		{
+			headers: {
+				"Content-Type": "application/json",
+			},
+		}
 	);
 };
 

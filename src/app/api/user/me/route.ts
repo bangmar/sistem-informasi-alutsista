@@ -11,7 +11,12 @@ const getMeHandler = async (request: IUserRequest) => {
 		JSON.stringify({
 			message: "success get me",
 			data,
-		})
+		}),
+		{
+			headers: {
+				"Content-Type": "application/json",
+			},
+		}
 	);
 };
 
