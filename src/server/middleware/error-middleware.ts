@@ -1,4 +1,3 @@
-import { NextRequest } from "next/server";
 import { ResponseError } from "../error/response-error";
 import { IUserRequest, TParams } from "./types";
 

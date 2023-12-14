@@ -11,7 +11,12 @@ async function postHandler(request: IUserRequest) {
 		JSON.stringify({
 			data,
 			message: "Success create New User!",
-		})
+		}),
+		{
+			headers: {
+				"Content-Type": "application/json",
+			},
+		}
 	);
 }
 

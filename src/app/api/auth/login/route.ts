@@ -9,7 +9,12 @@ async function postHandler(request: Request) {
 		JSON.stringify({
 			message: "success login user",
 			data,
-		})
+		}),
+		{
+			headers: {
+				"Content-Type": "application/json",
+			},
+		}
 	);
 }
 

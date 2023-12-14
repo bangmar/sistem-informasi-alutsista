@@ -36,3 +36,35 @@ enum RoleName {
   USER
   ADMIN
 }
+
+
+model Item { 
+  id String @id @default(uuid())
+  name String @unique
+  imageURL String
+  status Status @default(Aktif)
+  place String
+  description String
+  history History[]
+  category Category @default(Gun)
+  @@map("item")
+}
+
+model History {
+  id String @id @default(uuid())
+  history String @db.LongText()
+  itemId String
+  item Item @relation(fields: [itemId], references: [id])
+  @@map("history")
+}
+
+enum Status {
+  Aktif
+  Rusak
+  Perawatan
+}
+enum Category {
+  Gun
+  Plane
+  Tank
+}
