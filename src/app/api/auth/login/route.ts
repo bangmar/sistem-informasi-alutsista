@@ -1,7 +1,7 @@
 import { errorMiddleware } from "@/server/middleware/error-middleware";
 import { login } from "@/server/service/user-service";
 
-async function postHandler(request: Request) {
+async function loginHandler(request: Request) {
 	const json = await request.json();
 	const data = await login(json);
 
@@ -18,4 +18,4 @@ async function postHandler(request: Request) {
 	);
 }
 
-export const POST = errorMiddleware(postHandler);
+export const POST = errorMiddleware(loginHandler);
