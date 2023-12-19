@@ -13,7 +13,9 @@ const LoginModule = () => {
 					classname='text-neutral-200 grid place-items-center w-full lg:w-[460px]'
 					name='masuk'
 					cat='primary'
-					type='submit'
+					type='button'
+					hasLink={true}
+					link='/dashboard/inventory'
 				/>
 				<p className='text-sm'>
 					Lupa kata sandi ? Hubungi Andministrator{" "}
