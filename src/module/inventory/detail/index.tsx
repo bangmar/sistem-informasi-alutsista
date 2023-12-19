@@ -89,7 +89,7 @@ const ItemDetailModule = () => {
 												{name}
 											</h1>
 											<Link
-												href={`/dashboard/inventory/${link}`}
+												href={`/dashboard/inventory${link}`}
 												className='group flex gap-2 text-green-700 items-center text-sm '>
 												<p>Informasi Lebih</p>
 												<BsArrowRight className='group-hover:ml-1 ease-in-out duration-150 transition-all' />

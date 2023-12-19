@@ -5,31 +5,31 @@ import { BsArrowRight } from "react-icons/bs";
 export const exampleItem = [
 	{
 		name: "Night Hawk Costum",
-		link: "testid",
+		link: "/testid",
 		image:
 			"https://res.cloudinary.com/dehrqyxo1/image/upload/v1702867616/lautsista/m5meimk9vui5tgl6o99e.png",
 	},
 	{
 		name: "M-4",
-		link: "testid",
+		link: "/testid",
 		image:
 			"https://res.cloudinary.com/dehrqyxo1/image/upload/v1702867616/lautsista/t4u4sajugok5wu7ydmky.png",
 	},
 	{
 		name: "Magnum Revolver",
-		link: "testid",
+		link: "/testid",
 		image:
 			"https://res.cloudinary.com/dehrqyxo1/image/upload/v1702867616/lautsista/m5meimk9vui5tgl6o99e.png",
 	},
 	{
 		name: "Abrams M1",
-		link: "testid",
+		link: "/testid",
 		image:
 			"https://res.cloudinary.com/dehrqyxo1/image/upload/v1702867616/lautsista/t4u4sajugok5wu7ydmky.png",
 	},
 	{
 		name: "Challenger 2",
-		link: "testid",
+		link: "/testid",
 		image:
 			"https://res.cloudinary.com/dehrqyxo1/image/upload/v1702867616/lautsista/ap4qauwbmcc3grdbe7rw.png",
 	},
