@@ -1,6 +1,5 @@
 import hero from "@/assets/home/hero.svg";
 import Image from "next/image";
-import { AiOutlineSearch } from "react-icons/ai";
 
 const HeroSection = () => {
 	return (
