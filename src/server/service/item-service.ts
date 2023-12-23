@@ -67,7 +67,17 @@ export const getById = async (request: IdSchemaType) => {
 	if (!isItemExsisted) {
 		throw new ResponseError(404, "Item not found");
 	}
-	return isItemExsisted;
+
+	const relatedItem = await prisma.item.findMany({
+		where: {
+			AND: [
+				{ category: isItemExsisted.category },
+				{ id: { not: isItemExsisted.id } },
+			],
+		},
+	});
+
+	return { item: isItemExsisted, relatedItem };
 };
 
 export const update = async (request: UpdateSchemaType) => {

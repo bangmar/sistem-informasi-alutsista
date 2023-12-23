@@ -64,28 +64,6 @@ const AuthLayout: FC<TAuthLayoutProps> = ({
 					)}
 					{children}
 				</section>
-
-				<section>
-					{type === "login" ? (
-						<p className=''>
-							Belum punya akun ?{" "}
-							<Link
-								href={"/auth/daftar"}
-								className='font-bold text-green-700 text-sm'>
-								Buat Sekarang
-							</Link>
-						</p>
-					) : (
-						<p className=''>
-							Sudah punya akun ?{" "}
-							<Link
-								href={"/auth/masuk"}
-								className='font-bold text-green-700 text-sm'>
-								Masuk Sekarang
-							</Link>
-						</p>
-					)}
-				</section>
 			</section>
 		</section>
 	);
