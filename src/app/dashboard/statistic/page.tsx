@@ -1,7 +1,8 @@
+import StatisticModule from "@/module/statistic";
 import { NextPage } from "next";
 
 const StatisticPage: NextPage = () => {
-	return <div>Halaman Laporan</div>;
+	return <StatisticModule />;
 };
 
 export default StatisticPage;

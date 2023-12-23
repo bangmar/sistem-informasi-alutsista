@@ -27,6 +27,7 @@ const Button: FC<TButtonProps> = ({
 }) => {
 	return (
 		<button
+			disabled={false}
 			name={name}
 			type={type}
 			className={`${classname} ${

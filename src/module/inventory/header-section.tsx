@@ -3,6 +3,9 @@ import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { FaAngleDown } from "react-icons/fa6";
 import { IoMdAdd } from "react-icons/io";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { allItems, filteredItem } from "./store";
+import MyDialog from "./add-modal";
 
 export const category = [
 	{ name: "Semua Kategori", value: "" },
@@ -12,24 +15,50 @@ export const category = [
 ];
 
 const HeaderSection = () => {
-	const [selected, setSelected] = useState(category[0]);
+	const [getAllItems] = useRecoilState(allItems);
+	const setFilteredItems = useSetRecoilState(filteredItem);
+	const [categories, setCategory] = useState(category[0]);
+
+	const [name, setName] = useState("");
+
+	const filterItemsHandler = (name?: string, cat?: any) => {
+		setName(name as string);
+		const filterItems: any = getAllItems
+			.filter((item: any): any => {
+				return item?.name?.toLowerCase().includes(name);
+			})
+			.filter((item: any): any => {
+				if (cat === "") {
+					return item;
+				} else {
+					return item?.category === cat;
+				}
+			});
+		setFilteredItems(filterItems);
+	};
 
 	return (
 		<header className='mb-10'>
-			<h1 className='mb-6 text-lg font-medium text-slate-800'>
-				Cari Lautsista
-			</h1>
+			<h1 className='mb-6 text-2xl font-bold text-slate-800'>Cari Lautsista</h1>
 			<section className='flex gap-4 items-center mb-10'>
 				<input
 					type='text'
 					placeholder='Nama Perlengkapan'
 					className='text-sm bg-gray-100 rounded-sm px-4 py-3 outline-none w-72 shadow-sm'
+					onChange={(e) => {
+						filterItemsHandler(e.target.value as string, categories.value);
+					}}
 				/>
 				<section className=' w-72'>
-					<Listbox value={selected} onChange={setSelected}>
+					<Listbox
+						value={categories}
+						onChange={(e): any => {
+							setCategory(e);
+							filterItemsHandler(name, e.value);
+						}}>
 						<div className='relative mt-1'>
 							<Listbox.Button className='relative flex w-72 items-center justify-between cursor-pointer rounded-md bg-gray-100 px-4 py-3 shadow-sm text-sm'>
-								<span className='block truncate '> {selected.name}</span>
+								<span className='block truncate '> {categories.name}</span>
 								<FaAngleDown />
 							</Listbox.Button>
 							<Transition
@@ -66,10 +95,7 @@ const HeaderSection = () => {
 						</div>
 					</Listbox>
 				</section>
-
-				<span className='grid place-items-center text-neutral-100 text-lg hover:bg-green-700 transition-all ease-in-out duration-300 cursor-pointer w-10 h-10  bg-green-600 rounded-md shadow-sm'>
-					<IoMdAdd />
-				</span>
+				<MyDialog />
 			</section>
 			<p className='text-sm text-neutral-800'>
 				Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti sint

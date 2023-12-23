@@ -113,7 +113,7 @@ export const login = async (request: LoginSchemaType) => {
 		},
 		"TESTSECRETDULU",
 		{
-			expiresIn: "20m",
+			expiresIn: "200m",
 		}
 	);
 

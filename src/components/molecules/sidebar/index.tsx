@@ -1,6 +1,7 @@
 "use client";
 import { FC, ReactElement } from "react";
 import logo from "@/assets/home/logo.svg";
+import profile from "@/assets/home/profile.png";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,6 +9,7 @@ import { TbReportAnalytics } from "react-icons/tb";
 import { GiHomeGarage } from "react-icons/gi";
 import { RiLogoutCircleLine } from "react-icons/ri";
 import { FaRegUser } from "react-icons/fa6";
+import { useGetMe } from "@/module/auth/profile/hook";
 
 const Sidebar: FC = (): ReactElement => {
 	const SIDEBAR_MENU = [
@@ -29,17 +31,27 @@ const Sidebar: FC = (): ReactElement => {
 	];
 
 	const pathname = usePathname();
+	const { data } = useGetMe();
+	const me = data?.data;
 
 	return (
-		<section className='w-80 min-h-[100vh]  bg-text-primary px-10 py-10 text-neutral-100 '>
+		<section className='w-80 min-h-[100vh] fixed  bg-text-primary px-10 py-10 text-neutral-100 '>
 			<section className='mb-40'>
 				<Link href={"/"}>
-					<Image src={logo} width={120} height={200} alt='logo-bts' />
+					<Image src={logo} width={120} height={200} alt='logo-bts' priority />
 				</Link>
 				<section className=' py-10'>
-					<span className='h-10 w-10 rounded-sm bg-gray-100 block mb-2'></span>
-					<h1 className='font-bold text-lg'>Letkol Mario Rudy Silalahi</h1>
-					<p>20102018</p>
+					<span className='h-12 w-12 rounded-sm bg-gray-100 block mb-2 overflow-hidden'>
+						<Image
+							src={profile}
+							width={120}
+							height={200}
+							alt='profile-user'
+							loading='lazy'
+						/>
+					</span>
+					<h1 className='font-bold text-lg'>{me?.fullname}</h1>
+					<p>{me?.nip}</p>
 				</section>
 				<section className='flex flex-col gap-2'>
 					{SIDEBAR_MENU.map((item, index) => {
