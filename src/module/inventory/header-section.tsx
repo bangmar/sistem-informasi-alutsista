@@ -2,10 +2,9 @@
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { FaAngleDown } from "react-icons/fa6";
-import { IoMdAdd } from "react-icons/io";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { allItems, filteredItem } from "./store";
-import MyDialog from "./add-modal";
+import AddModal from "./add-modal";
 
 export const category = [
 	{ name: "Semua Kategori", value: "" },
@@ -95,7 +94,7 @@ const HeaderSection = () => {
 						</div>
 					</Listbox>
 				</section>
-				<MyDialog />
+				<AddModal />
 			</section>
 			<p className='text-sm text-neutral-800'>
 				Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti sint

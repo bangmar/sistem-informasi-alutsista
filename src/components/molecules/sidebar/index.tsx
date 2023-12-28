@@ -11,28 +11,43 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import { FaRegUser } from "react-icons/fa6";
 import { useGetMe } from "@/module/auth/profile/hook";
 
-const Sidebar: FC = (): ReactElement => {
-	const SIDEBAR_MENU = [
-		{
-			name: "Laporan",
-			link: "/dashboard/statistic",
-			logo: <TbReportAnalytics />,
-		},
-		{
-			name: "Inventori",
-			link: "/dashboard/inventory",
-			logo: <GiHomeGarage />,
-		},
-		{
-			name: "Pengguna",
-			link: "/dashboard/user",
-			logo: <FaRegUser />,
-		},
-	];
+const adminMenu = [
+	{
+		name: "Laporan",
+		link: "/dashboard/statistic",
+		logo: <TbReportAnalytics />,
+	},
+	{
+		name: "Inventori",
+		link: "/dashboard/inventory",
+		logo: <GiHomeGarage />,
+	},
+	{
+		name: "Pengguna",
+		link: "/dashboard/user",
+		logo: <FaRegUser />,
+	},
+];
 
+const userMenu = [
+	{
+		name: "Laporan",
+		link: "/dashboard/statistic",
+		logo: <TbReportAnalytics />,
+	},
+	{
+		name: "Inventori",
+		link: "/dashboard/inventory",
+		logo: <GiHomeGarage />,
+	},
+];
+
+const Sidebar: FC = (): ReactElement => {
 	const pathname = usePathname();
-	const { data } = useGetMe();
+	const { data, isLoading } = useGetMe();
 	const me = data?.data;
+	const role = me?.role?.name;
+	const SIDEBAR_MENU = role === "ADMIN" ? adminMenu : userMenu;
 
 	return (
 		<section className='w-80 min-h-[100vh] fixed  bg-text-primary px-10 py-10 text-neutral-100 '>
@@ -54,22 +69,23 @@ const Sidebar: FC = (): ReactElement => {
 					<p>{me?.nip}</p>
 				</section>
 				<section className='flex flex-col gap-2'>
-					{SIDEBAR_MENU.map((item, index) => {
-						return (
-							<div
-								key={index}
-								className={`${
-									pathname.includes(item.link)
-										? "text-neutral-100"
-										: "text-neutral-400"
-								} flex items-center gap-3 text-lg transition-colors ease-in-out duration-300`}>
-								{item.logo}
-								<Link href={`${item.link}`} passHref>
-									<p>{item.name}</p>
-								</Link>
-							</div>
-						);
-					})}
+					{!isLoading &&
+						SIDEBAR_MENU.map((item, index) => {
+							return (
+								<div
+									key={index}
+									className={`${
+										pathname.includes(item.link)
+											? "text-neutral-100"
+											: "text-neutral-400"
+									} flex items-center gap-3 text-lg transition-colors ease-in-out duration-300`}>
+									{item.logo}
+									<Link href={`${item.link}`} passHref>
+										<p>{item.name}</p>
+									</Link>
+								</div>
+							);
+						})}
 				</section>
 			</section>
 			<Link
