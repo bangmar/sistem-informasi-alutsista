@@ -3,7 +3,7 @@ import { adminMiddleware } from "@/server/middleware/admin-middleware";
 import { authMiddleware } from "@/server/middleware/auth-middleware";
 import { errorMiddleware } from "@/server/middleware/error-middleware";
 import { TParams } from "@/server/middleware/types";
-import { getById, update } from "@/server/service/item-service";
+import { getById, remove, update } from "@/server/service/item-service";
 import { validation } from "@/server/validation";
 import { imageSchema } from "@/server/validation/item-validation";
 
@@ -64,5 +64,23 @@ const updateHandler = async (request: Request, params: TParams | undefined) => {
 	);
 };
 
+const deleteHandler = async (requset: Request, params: TParams | undefined) => {
+	const id = params?.params?.id;
+
+	await remove(id as string);
+
+	return new Response(
+		JSON.stringify({
+			message: "success  remove item",
+		}),
+		{
+			headers: {
+				"Content-Type": "application/json",
+			},
+		}
+	);
+};
+
 export const GET = authMiddleware(errorMiddleware(getHandler));
 export const PUT = adminMiddleware(errorMiddleware(updateHandler));
+export const DELETE = adminMiddleware(errorMiddleware(deleteHandler));

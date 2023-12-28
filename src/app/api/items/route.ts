@@ -47,23 +47,4 @@ const createHandler = async (request: Request) => {
 	);
 };
 
-const removeHandler = async (request: Request) => {
-	const { searchParams } = new URL(request.url);
-	const id = searchParams.get("id") as string;
-
-	await remove(id);
-
-	return new Response(
-		JSON.stringify({
-			message: "success remove item",
-		}),
-		{
-			headers: {
-				"Content-Type": "application/json",
-			},
-		}
-	);
-};
-
 export const POST = adminMiddleware(errorMiddleware(createHandler));
-export const DELETE = adminMiddleware(errorMiddleware(removeHandler));

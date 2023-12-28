@@ -25,7 +25,7 @@ const getHandler = async (request: Request) => {
 const updateHandler = async (request: IUserRequest) => {
 	const { searchParams } = new URL(request.url);
 	const id = searchParams.get("id");
-	const data = await update({ ...(await request.json()), id: id });
+	const data: any = await update({ ...(await request.json()), id: id });
 
 	return new Response(
 		JSON.stringify({

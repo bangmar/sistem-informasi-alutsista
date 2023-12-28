@@ -15,10 +15,10 @@ import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 type LoginSchema = z.infer<typeof loginSchema>;
 
 const LoginModule = () => {
-	const [error, setError] = useState("");
-	const [isShow, setShow] = useState(false);
 	const router = useRouter();
 
+	const [error, setError] = useState("");
+	const [isShow, setShow] = useState(false);
 	const {
 		register,
 		handleSubmit,
@@ -34,7 +34,7 @@ const LoginModule = () => {
 			mutate(data, {
 				onSuccess: () => {
 					console.log("sukses login");
-					router.push("/dashboard/inventory");
+					router.push("/dashboard/statistic");
 				},
 				onError: (error: AxiosError<any, any>) => {
 					setError(error.response?.data.error);

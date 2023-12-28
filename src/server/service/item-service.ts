@@ -60,7 +60,11 @@ export const getById = async (request: IdSchemaType) => {
 			id: request,
 		},
 		include: {
-			history: true,
+			history: {
+				orderBy: {
+					createdAt: "desc",
+				},
+			},
 		},
 	});
 
@@ -127,7 +131,7 @@ export const remove = async (request: RemoveSchemaType) => {
 
 	return await prisma.item.delete({
 		where: {
-			id: "ae3fda43-e857-4eda-8351-05da975636d2",
+			id: request,
 		},
 	});
 };

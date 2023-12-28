@@ -2,6 +2,7 @@ import Sidebar from "@/components/molecules/sidebar";
 import "../globals.css";
 import type { Metadata } from "next";
 import { Playfair_Display } from "next/font/google";
+import ProtectedWrap from "./protected-wrap";
 
 const playfairDisplay = Playfair_Display({ subsets: ["latin"] });
 
@@ -17,11 +18,11 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<section className={playfairDisplay.className}>
-			<section className='flex'>
+		<ProtectedWrap>
+			<section className={`${playfairDisplay.className} flex `}>
 				<Sidebar />
 				<section className='ml-80 px-10 py-10 flex-1'>{children}</section>
 			</section>
-		</section>
+		</ProtectedWrap>
 	);
 }

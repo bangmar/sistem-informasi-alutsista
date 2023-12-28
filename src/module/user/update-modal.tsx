@@ -1,21 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { BsArrowRight } from "react-icons/bs";
 import { BiSolidHide, BiSolidShow } from "react-icons/bi";
-import { IoMdAdd } from "react-icons/io";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { registerSchema } from "@/server/validation/user-validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useGetAll, useRegister } from "./hook";
+import { useGetAll, useUpdate } from "./hook";
 import { AxiosError } from "axios";
-import { useRouter } from "next/router";
+import { MdOutlineEdit } from "react-icons/md";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Button from "@/components/atoms/button";
 
-function AddUserModal() {
+function UpdateUserModal({ data }: any) {
 	let [isOpen, setIsOpen] = useState(false);
 	const [isShow, setShow] = useState(false);
 
@@ -25,23 +24,22 @@ function AddUserModal() {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
 		reset,
+		formState: { errors },
 	} = useForm<RegisterSchema>({
 		resolver: zodResolver(registerSchema),
 	});
 
-	const { mutate, isError, isLoading } = useRegister();
+	const { mutate, isError, isLoading } = useUpdate(data?.id);
 	const { refetch } = useGetAll();
 
 	const onSubmit = (data: any) => {
 		try {
 			mutate(data, {
 				onSuccess: () => {
-					console.log("sukses create user");
+					console.log("sukses update user");
 					setIsOpen(false);
 					refetch();
-					reset({ email: "", fullname: "", nip: "", password: "" });
 				},
 				onError: (error: AxiosError<any, any>) => {
 					setError(error.response?.data.error);
@@ -51,6 +49,10 @@ function AddUserModal() {
 			console.log(error);
 		}
 	};
+
+	useEffect(() => {
+		reset(data);
+	}, [reset, data]);
 
 	return (
 		<section>
@@ -73,7 +75,7 @@ function AddUserModal() {
 								}}
 							/>
 							<h1 className='text-lg text-slate-800 font-medium'>
-								Tambahkan Pengguna Baru
+								Edit Pengguna
 							</h1>
 						</section>
 
@@ -124,7 +126,7 @@ function AddUserModal() {
 									id='password'
 									autoComplete='new-password'
 									type={isShow ? "text" : "password"}
-									className={`w-full  mb-2 remove-arrow border-b-2 border-green-700/40 outline-none focus:border-green-700 transition-all duration-300 ease-in-out px-1 py-1 placeholder:text-neutral-400 text-sm lg:w-[460px]`}
+									className={`w-full  mb-2 remove-arrow border-b-2 border-green-700/40 outline-none focus:border-green-700 transition-all duration-300 ease-in-out px-1 py-1 placeholder:text-neutral-400 text-sm lg:w-[460px] `}
 									placeholder='Masukan Kata Sandi'
 								/>
 
@@ -151,9 +153,9 @@ function AddUserModal() {
 								</p>
 							)}
 							<Button
-								text='Daftar'
+								text='Update'
 								classname='text-neutral-200 !bg-green-600 !text-sm mb-2  grid place-items-center w-full lg:w-[460px]'
-								name='daftar'
+								name='update'
 								cat='primary'
 								type='submit'
 								hasIcon={true}
@@ -171,14 +173,13 @@ function AddUserModal() {
 			</Dialog>
 
 			<span
-				className='grid place-items-center text-neutral-100 text-lg hover:bg-green-700 transition-all ease-in-out duration-300 cursor-pointer w-11 h-11  bg-green-600 rounded-md shadow-sm'
 				onClick={() => {
-					setIsOpen(!isOpen);
+					setIsOpen(true);
 				}}>
-				<IoMdAdd />
+				<MdOutlineEdit className='text-green-700 cursor-pointer hover:bg-gray-100 hover:rounded-md hover:shadow-sm hover:p-0.5 transition-all duration-200 ease-in-out' />
 			</span>
 		</section>
 	);
 }
 
-export default AddUserModal;
+export default UpdateUserModal;

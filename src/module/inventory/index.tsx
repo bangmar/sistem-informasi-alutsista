@@ -5,11 +5,12 @@ import ItemSection from "./item-section";
 import { useSetRecoilState } from "recoil";
 import { allItems, filteredItem } from "./store";
 import { useGetItem } from "./hook";
+import ItemLoading from "./item-loading";
 
 const InventoryModule = () => {
 	const setAllItems = useSetRecoilState(allItems);
 	const setFilteredItem = useSetRecoilState(filteredItem);
-	const { data } = useGetItem();
+	const { data, isLoading } = useGetItem();
 
 	useEffect(() => {
 		setAllItems(data?.data);
@@ -19,7 +20,7 @@ const InventoryModule = () => {
 	return (
 		<Fragment>
 			<HeaderSection />
-			<ItemSection />
+			{isLoading ? <ItemLoading /> : <ItemSection />}
 		</Fragment>
 	);
 };
