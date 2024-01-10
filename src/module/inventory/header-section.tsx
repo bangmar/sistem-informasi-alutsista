@@ -2,9 +2,10 @@
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { FaAngleDown } from "react-icons/fa6";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { allItems, filteredItem } from "./store";
 import AddModal from "./add-modal";
+import { userRole } from "@/components/molecules/sidebar/store";
 
 export const category = [
 	{ name: "Semua Kategori", value: "" },
@@ -17,8 +18,9 @@ const HeaderSection = () => {
 	const [getAllItems] = useRecoilState(allItems);
 	const setFilteredItems = useSetRecoilState(filteredItem);
 	const [categories, setCategory] = useState(category[0]);
-
 	const [name, setName] = useState("");
+
+	const getRole = useRecoilValue(userRole);
 
 	const filterItemsHandler = (name?: string, cat?: any) => {
 		setName(name as string);
@@ -94,7 +96,7 @@ const HeaderSection = () => {
 						</div>
 					</Listbox>
 				</section>
-				<AddModal />
+				{getRole === "ADMIN" ? <AddModal /> : null}
 			</section>
 			<p className='text-sm text-neutral-800'>
 				Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti sint

@@ -22,6 +22,7 @@ const MoreInfoSection = () => {
 						isHasButton
 						title='Informasi Senjata Api'
 						icon={<FaGun className='text-green-700 w-12 h-12' />}
+						link='/dashboard/inventory'
 					/>
 
 					<Card
@@ -29,18 +30,21 @@ const MoreInfoSection = () => {
 						isHasButton
 						title='Informasi Pesawat'
 						icon={<FaPlane className='text-green-700 w-12 h-12' />}
+						link='/dashboard/inventory'
 					/>
 					<Card
 						buttonText='Lihat Lebih'
 						isHasButton
 						title='Informasi Kapal Laut'
 						icon={<FaShip className='text-green-700 w-12 h-12' />}
+						link='/dashboard/inventory'
 					/>
 					<Card
 						buttonText='Lihat Lebih'
 						isHasButton
 						title='Informasi Tank Tempur Laut'
 						icon={<GiTank className='text-green-700 w-12 h-12' />}
+						link='/dashboard/inventory'
 					/>
 				</div>
 			</main>

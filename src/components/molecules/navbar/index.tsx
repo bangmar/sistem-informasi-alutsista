@@ -3,6 +3,7 @@
 import logo from "@/assets/home/logo.svg";
 import Button from "@/components/atoms/button";
 import { useIsScroll } from "@/hooks/useIsScroll";
+import { useGetMe } from "@/module/auth/profile/hook";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -17,6 +18,9 @@ const Navbar = () => {
 	const { isSticky } = useIsScroll();
 
 	const pathname = usePathname();
+
+	const { data, isLoading } = useGetMe();
+	const me = data?.data;
 
 	return (
 		<header
@@ -56,14 +60,24 @@ const Navbar = () => {
 					Panduan
 				</Link>
 
-				<Button
-					cat='primary'
-					name='masuk'
-					hasLink={true}
-					text='Masuk'
-					link='/auth/masuk'
-					classname='w-full grid place-items-center'
-				/>
+				{me ? (
+					<Link
+						href={"/dashboard/statistic"}
+						className={`${
+							pathname === "/dashboard/statistic" ? "font-bold" : ""
+						} hover:font-bold ease-in-out  duration-300`}>
+						Dashboard
+					</Link>
+				) : (
+					<Button
+						cat='primary'
+						name='masuk'
+						hasLink={true}
+						text='Masuk'
+						link='/auth/masuk'
+						classname='w-full grid place-items-center'
+					/>
+				)}
 			</nav>
 			<section
 				onClick={() => {
