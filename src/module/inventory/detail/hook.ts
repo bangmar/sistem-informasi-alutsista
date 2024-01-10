@@ -5,11 +5,13 @@ import {
 	useQuery,
 } from "react-query";
 import {
+	UpdatePayload,
 	addHistoryRequest,
 	editHistoryRequest,
 	getDetailRequest,
 	removeHistoryRequest,
 	removeItemRequest,
+	updateDetailRequest,
 	updatePayload,
 } from "./api";
 
@@ -17,6 +19,16 @@ export const useGetItemDetail = (id: string): UseQueryResult<any, any> => {
 	return useQuery({
 		queryKey: ["get-items-detail-by-id"],
 		queryFn: async () => await getDetailRequest(id),
+	});
+};
+
+export const useUpdateDetail = (
+	id: string
+): UseMutationResult<any, any, any, any> => {
+	return useMutation({
+		mutationKey: ["update-item"],
+		mutationFn: async (payload: UpdatePayload) =>
+			await updateDetailRequest(id, payload),
 	});
 };
 

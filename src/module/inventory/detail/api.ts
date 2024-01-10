@@ -1,4 +1,5 @@
 import api from "@/utils/api";
+import { serialize } from "object-to-formdata";
 
 export type updatePayload = {
 	history: string;
@@ -6,6 +7,28 @@ export type updatePayload = {
 
 export const getDetailRequest = async (id: string) => {
 	const { data } = await api.get(`/items/${id}`);
+
+	return data;
+};
+
+export type UpdatePayload = {
+	name: string;
+	status: string;
+	place: string;
+	description: string;
+	history: string;
+	category: string;
+	image?: File;
+};
+export const updateDetailRequest = async (
+	id: string,
+	payload: updatePayload
+) => {
+	const { data } = await api.put(`/items/${id}`, serialize(payload), {
+		headers: {
+			"Content-Type": "multipart/form-data",
+		},
+	});
 
 	return data;
 };

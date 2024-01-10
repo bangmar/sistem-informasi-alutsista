@@ -93,10 +93,13 @@ function AddModal() {
 							image: undefined,
 							description: "",
 							history: "",
+							status: statuses,
+							category: categories.value,
 						});
+						setSelectedImage(null);
 					},
-					onError: (error: AxiosError<any, any>) => {
-						setError(error.response?.data.error);
+					onError: async (error: AxiosError<any, any>) => {
+						setError(await error.response?.data.error);
 						console.log(data);
 					},
 				}
@@ -106,12 +109,27 @@ function AddModal() {
 		}
 	};
 
+	const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+		const file = e.target.files?.[0];
+
+		if (file && file.type.startsWith("image/")) {
+			const reader = new FileReader();
+			reader.onload = () => {
+				setSelectedImage(reader.result as string);
+			};
+			reader.readAsDataURL(file);
+			setValue("image", e.target.files);
+		} else {
+			setSelectedImage(null);
+		}
+	};
+
 	useEffect(() => {
 		reset({
 			status: statuses,
 			category: categories.value,
 		});
-	}, []);
+	}, [categories.value, reset, statuses]);
 
 	return (
 		<section>
@@ -140,26 +158,40 @@ function AddModal() {
 								Tambahkan Alutsista Baru
 							</h1>
 						</section>
-						<section className='px-9 pt-4  gap-6 mb-2'>
-							<section className='w-full overflow-hidden py-2'>
-								<label className='w-full  h-20'>
-									<span className='text-sm mb-1 block text-neutral-400'>
-										Pilih Gambar
-									</span>
+						<section className='px-9 pt-4 flex  gap-6 mb-2'>
+							<section className='w-full py-2'>
+								<label
+									htmlFor='input-image'
+									className={`h-44 w-full flex-shrink-0 shadow-md group relative rounded-md grid place-items-center bg-gray-300 ${
+										selectedImage ? "bg-cover" : ""
+									}`}
+									style={
+										selectedImage
+											? { backgroundImage: `url(${selectedImage})` }
+											: {}
+									}>
+									<BiImageAdd
+										className={`text-4xl  cursor-pointer ${
+											selectedImage
+												? "text-slate-200 hover:text-slate-700 transition-colors ease-in-out"
+												: "text-slate-700"
+										}`}
+									/>
 									<input
-										{...register("image")}
+										onChange={handleImageChange}
 										type='file'
+										id='input-image'
 										accept='image/*'
 										placeholder='Pilih Gambar'
-										className='w-full  py-2 px-4 border border-gray-300 rounded-md text-sm focus:outline-none '
+										className='w-full hidden   '
 									/>
 								</label>
+								{errors.image && (
+									<p className='text-xs text-red-500 px-1 pt-2 mb-1'>
+										{errors?.image?.message as string}
+									</p>
+								)}
 							</section>
-							{errors.image && (
-								<p className='text-xs text-red-500 px-1  mb-1'>
-									{errors?.image?.message as string}
-								</p>
-							)}
 
 							<section className='w-full flex flex-col gap-2 py-2 '>
 								<input
@@ -170,7 +202,7 @@ function AddModal() {
 									placeholder='Nama Alutsista'
 								/>
 								{errors.name && (
-									<p className='text-xs text-red-500 px-1 -mt-4 mb-1'>
+									<p className='text-xs text-red-500 px-1 -mt-2 mb-1'>
 										{errors.name.message}
 									</p>
 								)}
@@ -182,7 +214,7 @@ function AddModal() {
 									placeholder='Pangkalan'
 								/>
 								{errors.place && (
-									<p className='text-xs text-red-500 px-1 -mt-4 mb-1'>
+									<p className='text-xs text-red-500 px-1 -mt-2 mb-1'>
 										{errors.place.message}
 									</p>
 								)}
@@ -291,7 +323,7 @@ function AddModal() {
 								className='w-full h-24 mb-2  mt-1 text-slate-600 border-2 rounded-md shadow-sm border-gray-200 outline-none focus:border-green-700 transition-all duration-300 ease-in-out px-1 py-1 placeholder:text-neutral-400 text-sm bg-transparent '
 							/>
 							{errors.description && (
-								<p className='text-xs text-red-500 px-1 -mt-4 mb-1'>
+								<p className='text-xs text-red-500 px-1 -mt-2 mb-1'>
 									{errors.description.message}
 								</p>
 							)}
@@ -306,7 +338,7 @@ function AddModal() {
 								className='w-full mt-1 h-40 mb-2 text-slate-600 border-2 rounded-md shadow-sm border-gray-200 outline-none focus:border-green-700 transition-all duration-300 ease-in-out px-1 py-1 placeholder:text-neutral-400 text-sm bg-transparent '
 							/>
 							{errors.history && (
-								<p className='text-xs text-red-500 px-1 -mt-4 mb-1'>
+								<p className='text-xs text-red-500 px-1 -mt-2 mb-1'>
 									{errors.history.message}
 								</p>
 							)}

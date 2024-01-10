@@ -1,15 +1,18 @@
 "use client";
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, useState } from "react";
 import logo from "@/assets/home/logo.svg";
 import profile from "@/assets/home/profile.png";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { TbReportAnalytics } from "react-icons/tb";
 import { GiHomeGarage } from "react-icons/gi";
 import { RiLogoutCircleLine } from "react-icons/ri";
 import { FaRegUser } from "react-icons/fa6";
 import { useGetMe } from "@/module/auth/profile/hook";
+import { PiSpinner } from "react-icons/pi";
+import { useRecoilState } from "recoil";
+import { userRole } from "./store";
 
 const adminMenu = [
 	{
@@ -31,11 +34,6 @@ const adminMenu = [
 
 const userMenu = [
 	{
-		name: "Laporan",
-		link: "/dashboard/statistic",
-		logo: <TbReportAnalytics />,
-	},
-	{
 		name: "Inventori",
 		link: "/dashboard/inventory",
 		logo: <GiHomeGarage />,
@@ -46,11 +44,21 @@ const Sidebar: FC = (): ReactElement => {
 	const pathname = usePathname();
 	const { data, isLoading } = useGetMe();
 	const me = data?.data;
-	const role = me?.role?.name;
-	const SIDEBAR_MENU = role === "ADMIN" ? adminMenu : userMenu;
+
+	const [getRole, setRole] = useRecoilState(userRole);
+	const role = me?.role?.name as string;
+	setRole(role);
+	const SIDEBAR_MENU = getRole === "ADMIN" ? adminMenu : userMenu;
+
+	const router = useRouter();
+	const [logoutProgress, setLogoutProcess] = useState(false);
+	const logOutHandler = () => {
+		sessionStorage.removeItem("token-lautsista");
+		router.push("/");
+	};
 
 	return (
-		<section className='w-80 min-h-[100vh] fixed  bg-text-primary px-10 py-10 text-neutral-100 '>
+		<section className='w-80 min-h-[100vh] fixed top-0 bottom-0  bg-text-primary px-10 py-10 text-neutral-100 '>
 			<section className='mb-40'>
 				<Link href={"/"}>
 					<Image src={logo} width={120} height={200} alt='logo-bts' priority />
@@ -88,11 +96,18 @@ const Sidebar: FC = (): ReactElement => {
 						})}
 				</section>
 			</section>
-			<Link
-				href={"/"}
+			<section
+				onClick={() => {
+					setLogoutProcess(true);
+					logOutHandler();
+				}}
 				className='text-2xl fixed bottom-10 left-10 text-red-600 cursor-pointer hover:bg-red-400 transition-colors ease-in-out duration-300 bg-red-300 rounded-lg w-10 h-10 grid place-items-center'>
-				<RiLogoutCircleLine />
-			</Link>
+				{logoutProgress ? (
+					<PiSpinner className='animate-spin ' />
+				) : (
+					<RiLogoutCircleLine />
+				)}
+			</section>
 		</section>
 	);
 };
