@@ -54,7 +54,7 @@ const Sidebar: FC = (): ReactElement => {
 	const [logoutProgress, setLogoutProcess] = useState(false);
 	const logOutHandler = () => {
 		sessionStorage.removeItem("token-lautsista");
-		router.push("/");
+		window.location.reload();
 	};
 
 	return (
