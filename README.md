@@ -14,12 +14,6 @@ git clone https://github.com/bangmar/sistem-informasi-alutsista.git
 npm install
 ```
 
-### Lalukan Migrasi database ke model prisma dengan perintah
-
-```bash
-npx prisma db pull
-```
-
 ### Setelah semuanya, jalankan aplikasi dengan perintah
 
 ```bash

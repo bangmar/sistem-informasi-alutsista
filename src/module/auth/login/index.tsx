@@ -34,7 +34,7 @@ const LoginModule = () => {
 			mutate(data, {
 				onSuccess: () => {
 					console.log("sukses login");
-					router.push("/dashboard/statistic");
+					router.push("/dashboard/inventory");
 				},
 				onError: (error: AxiosError<any, any>) => {
 					setError(error.response?.data.error);
