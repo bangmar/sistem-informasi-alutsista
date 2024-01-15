@@ -14,6 +14,8 @@ git clone https://github.com/bangmar/sistem-informasi-alutsista.git
 npm install
 ```
 
+clone / download databasenya di https://github.com/bangmar/DB_LAUTSISTA.git
+
 ### Setelah semuanya, jalankan aplikasi dengan perintah
 
 ```bash
